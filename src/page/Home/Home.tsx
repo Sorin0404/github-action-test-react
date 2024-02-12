@@ -10,6 +10,7 @@ const Home = () => {
       >
         About 이동
       </Link>
+      <div>update version</div>
     </div>
   );
 };
