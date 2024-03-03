@@ -5,6 +5,14 @@ on:
     branches:
       - main
 
+env:
+  AWS_S3_BUCKET: sorin-github-action-test
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  CODEDEPLOY_APPLICATION: sorin-github-action-test
+  CODEDEPLOY_GROUP: sorin-github-action-test-group
+
 jobs:
   deploy:
     name: Build, Deploy to S3 bucket
@@ -37,8 +45,10 @@ jobs:
       - name: Upload to S3
         run: aws s3 cp build.zip s3://${{ env.AWS_S3_BUCKET }}/build.zip
 
-        env:
-          AWS_S3_BUCKET: sorin-github-action-test
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+      - name: Deploy to CodeDeploy
+        run: |
+          aws deploy create-deployment \
+          --application-name $CODEDEPLOY_APPLICATION \
+          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=build.zip \
+          --deployment-group-name $CODEDEPLOY_GROUP \
+          --file-exists-behavior OVERWRITE
