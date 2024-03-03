@@ -10,7 +10,7 @@ const Home = () => {
       >
         About 이동
       </Link>
-      <div>update version 1</div>
+      <div>update version</div>
     </div>
   );
 };
