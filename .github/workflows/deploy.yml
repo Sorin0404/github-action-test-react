@@ -10,10 +10,6 @@ jobs:
     name: Build, Deploy to S3 bucket
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.9.0]
-
     steps:
       - name: Checkout Source
         uses: actions/checkout@v3
