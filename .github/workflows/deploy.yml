@@ -34,11 +34,11 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Make build.zip file
-        run: zip -r build.zip ./dist/*
+      - name: Make dist.zip file
+        run: zip -r dist.zip ./dist/*
 
       - name: Make zip file
-        run: zip -r build.zip ./build.zip ./appspec.yml ./scripts/deploy.sh
+        run: zip -r build.zip ./dist.zip ./appspec.yml ./scripts/deploy.sh
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
