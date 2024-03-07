@@ -6,7 +6,7 @@ cd /home/ubuntu/build/temp
 unzip dist.zip -d /home/ubuntu/build/temp
 
 # mv /home/ubuntu/build/temp/dist/* /home/ubuntu/build/
-cp -r /home/ubuntu/build/temp/dist/* /home/ubuntu/build/
+sudo cp -r /home/ubuntu/build/temp/dist/* /home/ubuntu/build/
 
 # 임시 파일 정리
-rm -rf /home/ubuntu/build/temp
+sudo rm -rf /home/ubuntu/build/temp
